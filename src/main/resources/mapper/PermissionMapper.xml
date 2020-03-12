@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 为这个mapper指定一个唯一的namespace，namespace的值习惯上设置成包名+sql映射文件名，这样就能够保证namespace的值是唯一的 -->
+<mapper namespace="com.wx.chen.mapper.PermissionMapper">
+	<select id="findPermissionByRole" parameterType="com.wx.chen.dto.RoleDto" resultType="com.wx.chen.dto.PermissionDto">
+			SELECT
+				p.`id` AS id,
+				p.`title` AS title,
+				p.`action` AS action,
+				p.status as status,
+				p.`update_time` createTime,
+				p.`create_time` updateTime 
+			FROM
+				permission p
+				LEFT JOIN role_permission rp ON rp.permission_id = p.id 
+				where	1=1 
+				<if test="id !=null and id !=''">
+					 AND rp.role_id =#{id}
+				</if>
+	</select>
+</mapper>

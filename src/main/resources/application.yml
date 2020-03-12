@@ -1,0 +1,44 @@
+server:
+    #端口
+    port: 12121
+    session:
+        #session过期期限
+        timeout: 1000 # in seconds
+    
+spring:
+    application:
+        name: shiro-jwt-redis
+    #db  -- 默认数据源
+    datasource:
+    #mysql
+        #中健云康生产库
+        url: jdbc:mysql://localhost:3306/deep?serverTimezone=UTC&useUnicode=true&charaterEncoding=utf-8&useSSL=false
+        username: root
+        password: root
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+    #redis配置
+redis:
+    host: 127.0.0.1
+    port: 6379
+    max-idle: 20
+    max-total: 100
+    max-wait-millis: 3000
+    password: 123456  
+
+#mybatis                         
+mybatis:
+    mapper-locations: classpath:mapper/**/*Mapper.xml
+    configuration:
+        log-impl: org.apache.ibatis.logging.stdout.StdOutImpl 
+
+#AES密码加密私钥(Base64加密)
+encryptAESKey: V2FuZzkyNjQ1NGRTQkFQSUpXVA==
+#JWT认证加密私钥(Base64加密)
+encryptJWTKey: U0JBUElKV1RkV2FuZzkyNjQ1NA==
+#AccessToken过期时间-5分钟-5*60(秒为单位)
+accessTokenExpireTime: 300
+#RefreshToken过期时间-30分钟-30*60(秒为单位)
+refreshTokenExpireTime: 1800
+#Shiro缓存过期时间-5分钟-5*60(秒为单位)(一般设置与AccessToken过期时间一致)
+shiroCacheExpireTime: 300
