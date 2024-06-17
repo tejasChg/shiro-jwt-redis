@@ -11,7 +11,6 @@ spring:
     #db  -- 默认数据源
     datasource:
     #mysql
-        #中健云康生产库
         url: jdbc:mysql://localhost:3306/deep?serverTimezone=UTC&useUnicode=true&charaterEncoding=utf-8&useSSL=false
         username: root
         password: root
